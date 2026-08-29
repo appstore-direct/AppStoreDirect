@@ -87,12 +87,17 @@ struct CardBackground: ViewModifier {
                           ? AnyShapeStyle(Color.accentColor.opacity(0.10))
                           : AnyShapeStyle(.background.secondary))
             }
+            // Both overlays are decoration drawn above the content, so they must be
+            // transparent to clicks. Without this the hover tint sits on top of the
+            // row and swallows every press — including the Install button, precisely
+            // when the pointer is over it.
             .overlay {
                 RoundedRectangle(cornerRadius: Metric.cardRadius, style: .continuous)
                     .strokeBorder(
                         isSelected ? Color.accentColor.opacity(0.45) : Color(nsColor: .separatorColor),
                         lineWidth: isSelected ? 1 : 0.5
                     )
+                    .allowsHitTesting(false)
             }
             // Hover is a hint, not a highlight — a whole-row tint at twenty rows
             // reads as noise.
@@ -100,6 +105,7 @@ struct CardBackground: ViewModifier {
                 if isHighlighted && !isSelected {
                     RoundedRectangle(cornerRadius: Metric.cardRadius, style: .continuous)
                         .fill(Color.primary.opacity(0.035))
+                        .allowsHitTesting(false)
                 }
             }
             .animation(.easeOut(duration: 0.12), value: isHighlighted)

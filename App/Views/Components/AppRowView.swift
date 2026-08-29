@@ -205,6 +205,7 @@ struct AppArtwork: View {
         .overlay {
             RoundedRectangle(cornerRadius: Metric.iconRadius, style: .continuous)
                 .strokeBorder(Color(nsColor: .separatorColor), lineWidth: 0.5)
+                .allowsHitTesting(false)
         }
     }
 }

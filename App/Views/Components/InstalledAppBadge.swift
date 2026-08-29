@@ -31,6 +31,7 @@ struct InstalledAppBadge: View {
         .overlay {
             RoundedRectangle(cornerRadius: side * 0.24, style: .continuous)
                 .strokeBorder(Color(nsColor: .separatorColor), lineWidth: 0.5)
+                .allowsHitTesting(false)
         }
         .help("\(app.name) is installed on this device")
         .accessibilityLabel("\(app.name) installed")
