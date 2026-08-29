@@ -17,8 +17,16 @@ import Foundation
 /// install never stalls installs onto other phones.
 public actor InstallScheduler {
     public static let defaultLimit = 3
-    /// Offered in Settings. Above this, usbmuxd contention outweighs any gain.
-    public static let allowedLimits = [1, 3, 5, 10]
+    /// Settable range in Settings. The ceiling matches the largest bench a user is
+    /// expected to drive at once; the practical limit is usbmuxd, not this number,
+    /// and a device that cannot be reached reports its own failure rather than being
+    /// dropped from the batch.
+    public static let limitRange = 1...20
+
+    /// Clamps a stored or user-supplied value into the settable range.
+    public static func clampLimit(_ value: Int) -> Int {
+        min(max(value, limitRange.lowerBound), limitRange.upperBound)
+    }
 
     private var limit: Int
     private var running = 0

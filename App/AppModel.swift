@@ -34,6 +34,7 @@ final class AppModel {
     let devices = DeviceStore()
     let installs = InstallCenter()
     let ownership = OwnershipStore()
+    let icons = TrackedAppIconStore()
 
     // Session
     var account: StoreAccount?
@@ -78,7 +79,16 @@ final class AppModel {
         async let discovery: Void = devices.start()
         _ = await (session, discovery)
 
-        await devices.refreshInstalledAppsForSelection()
+        // A device's installed list drives the tracked-app badges, so refresh it
+        // whenever an install finishes on that device.
+        installs.onDeviceInstalled = { [weak self] udid in
+            Task { @MainActor [weak self] in
+                await self?.devices.refreshInstalledApps(for: udid)
+            }
+        }
+
+        await icons.load(countryCode: countryCode)
+        await devices.refreshInstalledAppsForAll()
     }
 
     /// Signs back in from the Keychain so the user is not asked for a password

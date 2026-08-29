@@ -31,21 +31,28 @@ struct SettingsView: View {
             }
 
             Section {
-                Picker("Maximum concurrent installs", selection: Binding(
+                Stepper(value: Binding(
                     get: { model.installs.concurrencyLimit },
                     set: { model.installs.concurrencyLimit = $0 }
-                )) {
-                    ForEach(InstallScheduler.allowedLimits, id: \.self) { limit in
-                        Text(limit == 1 ? "1 (one at a time)" : "\(limit)").tag(limit)
+                ), in: InstallScheduler.limitRange) {
+                    HStack {
+                        Text("Maximum concurrent installs")
+                        Spacer()
+                        Text("\(model.installs.concurrencyLimit)")
+                            .monospacedDigit()
+                            .foregroundStyle(.secondary)
                     }
                 }
             } header: {
                 Text("Installing")
             } footer: {
                 Text("""
-                How many devices are installed to at the same time. Each install holds a \
-                USB session open, so a high number can make usbmuxd the bottleneck. \
-                Work on any single device is always serialised, whatever this is set to.
+                How many devices are installed to at the same time \
+                (\(InstallScheduler.limitRange.lowerBound)–\(InstallScheduler.limitRange.upperBound)). \
+                Each install holds a USB session open, so a high number can make usbmuxd \
+                the bottleneck; a device that fails reports its own error rather than \
+                being dropped. Work on any single device is always serialised, whatever \
+                this is set to.
                 """)
                 .font(.caption)
                 .foregroundStyle(.secondary)

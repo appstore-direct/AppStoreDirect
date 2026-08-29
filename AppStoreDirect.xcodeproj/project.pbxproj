@@ -14,6 +14,7 @@
 		471543421062E84D86419FFE /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389E0B26388E4F804E77101D /* SettingsView.swift */; };
 		4B3B4106D3BB1EC77A438A1A /* AppStoreDirectApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BBA6EFC6F01F50859C6907 /* AppStoreDirectApp.swift */; };
 		5C16F3A6B8BB2FD068A2C3F1 /* OwnershipStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4CAE7A27A89FB9681FDB3E /* OwnershipStore.swift */; };
+		62B963D17670E1931DDEDB88 /* TrackedApps.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1230764C5090320463A732 /* TrackedApps.swift */; };
 		6AF83E80A2A1E10F990DDE4F /* DeviceStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8318FDA526D47777637077 /* DeviceStore.swift */; };
 		B0E4BA34CC417CA6AA007CDB /* AppStoreDirectKit in Frameworks */ = {isa = PBXBuildFile; productRef = 340FC868A222F8294C08A449 /* AppStoreDirectKit */; };
 		DF5A1D7D6771578E1AE69625 /* InstalledView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2513ED3E45D9491EC979B906 /* InstalledView.swift */; };
@@ -32,12 +33,13 @@
 		872C070AA71E2153572DA18C /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		A80E00BB96502AC795814119 /* AppsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsView.swift; sourceTree = "<group>"; };
 		A9BDDCBCEB24AB891311E694 /* AppStoreDirect.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppStoreDirect.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA1230764C5090320463A732 /* TrackedApps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackedApps.swift; sourceTree = "<group>"; };
 		ADCEDFED0A2D1B083EDD137D /* DevicesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevicesView.swift; sourceTree = "<group>"; };
 		AE7C18CB4DD76BF50F178E03 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		BE4CAE7A27A89FB9681FDB3E /* OwnershipStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnershipStore.swift; sourceTree = "<group>"; };
 		EA4C74EFB070653C72E784F0 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		FE8318FDA526D47777637077 /* DeviceStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceStore.swift; sourceTree = "<group>"; };
-		"TEMP_8FCEAE8E-0058-4965-8E55-B19FD5D32B08" /* Signing.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Signing.xcconfig; sourceTree = "<group>"; };
+		"TEMP_44015C9F-49C6-46CC-AB7F-65C2DA6036C2" /* Signing.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Signing.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +86,7 @@
 				AE7C18CB4DD76BF50F178E03 /* Info.plist */,
 				6454ADEB08A7EBCE3FEF3355 /* InstallCenter.swift */,
 				BE4CAE7A27A89FB9681FDB3E /* OwnershipStore.swift */,
+				AA1230764C5090320463A732 /* TrackedApps.swift */,
 				0E7D4014F18D7921C3FA06C7 /* Views */,
 			);
 			path = App;
@@ -105,10 +108,10 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		"TEMP_B6A4C69B-20F9-4249-9DB1-6B554E73B6E6" /* AppStoreDirect */ = {
+		"TEMP_78F8CBDF-C90F-477B-BCFC-C0960C4D74B4" /* AppStoreDirect */ = {
 			isa = PBXGroup;
 			children = (
-				"TEMP_8FCEAE8E-0058-4965-8E55-B19FD5D32B08" /* Signing.xcconfig */,
+				"TEMP_44015C9F-49C6-46CC-AB7F-65C2DA6036C2" /* Signing.xcconfig */,
 			);
 			path = AppStoreDirect;
 			sourceTree = "<group>";
@@ -231,6 +234,7 @@
 				2A83E4719AE6F8F248014537 /* RootView.swift in Sources */,
 				471543421062E84D86419FFE /* SettingsView.swift in Sources */,
 				32F2C9716AF7DCD3DAE224A2 /* SignInView.swift in Sources */,
+				62B963D17670E1931DDEDB88 /* TrackedApps.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -239,7 +243,7 @@
 /* Begin XCBuildConfiguration section */
 		125671673183EE4D2712C940 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = "TEMP_8FCEAE8E-0058-4965-8E55-B19FD5D32B08" /* Signing.xcconfig */;
+			baseConfigurationReference = "TEMP_44015C9F-49C6-46CC-AB7F-65C2DA6036C2" /* Signing.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -352,7 +356,7 @@
 		};
 		CBBEB59E47AEBB29F9328ADB /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = "TEMP_8FCEAE8E-0058-4965-8E55-B19FD5D32B08" /* Signing.xcconfig */;
+			baseConfigurationReference = "TEMP_44015C9F-49C6-46CC-AB7F-65C2DA6036C2" /* Signing.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;

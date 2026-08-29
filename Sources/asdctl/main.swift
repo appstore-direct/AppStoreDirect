@@ -17,7 +17,7 @@ func printUsage() {
       watch                stream USB attach/detach events
       search <term> [cc]   search the App Store catalogue (country default US)
       installed [udid]     list user apps on the device
-      scheduler            exercise InstallScheduler concurrency rules
+      scheduler [limit] [n] exercise InstallScheduler (default limit 3, 4 devices)
       diagnose <appID>     report sign-in, ownership and download authorization
       authorize <appID>    request licence material twice and compare (no download)
       acquire <appID>      download from Apple, verify the package, then delete it
@@ -284,17 +284,18 @@ case "acquire", "install":
 case "scheduler":
     // Verifies the two invariants that make multi-device installs safe:
     // the global cap is never exceeded, and one device never runs two jobs at once.
-    let limit = 3
+    let limit = arguments.count >= 2 ? (Int(arguments[1]) ?? 3) : 3
+    let deviceCount = arguments.count >= 3 ? (Int(arguments[2]) ?? 4) : 4
     let scheduler = InstallScheduler(limit: limit)
     let tracker = ConcurrencyTracker()
 
-    // 9 jobs across 4 devices; device "A" gets three of them.
-    let jobs: [(String, Int)] = [
-        ("A", 120), ("A", 60), ("A", 60),
-        ("B", 100), ("B", 80),
-        ("C", 90), ("C", 70),
-        ("D", 110), ("D", 50),
-    ]
+    // Two jobs per device, so per-device exclusivity is actually exercised.
+    var jobs: [(String, Int)] = []
+    for index in 0..<deviceCount {
+        let udid = String(format: "device-%02d", index + 1)
+        jobs.append((udid, 120))
+        jobs.append((udid, 60))
+    }
 
     let started = Date()
     await withTaskGroup(of: Void.self) { group in

@@ -19,6 +19,11 @@ final class InstallCenter {
     /// Max concurrent device installs. Persisted, and pushed to the scheduler.
     var concurrencyLimit: Int {
         didSet {
+            let clamped = InstallScheduler.clampLimit(concurrencyLimit)
+            if clamped != concurrencyLimit {
+                concurrencyLimit = clamped
+                return
+            }
             guard concurrencyLimit != oldValue else { return }
             UserDefaults.standard.set(concurrencyLimit, forKey: Self.limitKey)
             Task { await scheduler.setLimit(concurrencyLimit) }
@@ -32,9 +37,15 @@ final class InstallCenter {
     /// Apps by ID, so Retry can rebuild a request without the view supplying it.
     private var knownApps: [Int64: StoreApp] = [:]
 
+    /// Called with a UDID each time an install finishes on that device, so the
+    /// device's installed-app list can be re-read from the phone itself.
+    var onDeviceInstalled: (@MainActor (String) -> Void)?
+
     init() {
         let stored = UserDefaults.standard.integer(forKey: Self.limitKey)
-        let limit = InstallScheduler.allowedLimits.contains(stored) ? stored : InstallScheduler.defaultLimit
+        // `integer(forKey:)` returns 0 when unset, which clamps up to the minimum;
+        // treat that as "never chosen" and use the default instead.
+        let limit = stored == 0 ? InstallScheduler.defaultLimit : InstallScheduler.clampLimit(stored)
         self.concurrencyLimit = limit
         self.scheduler = InstallScheduler(limit: limit)
     }
@@ -170,6 +181,8 @@ final class InstallCenter {
             Task { @MainActor [weak self] in
                 guard let self else { return }
                 let key = InstallJobKey(appStoreID: appStoreID, udid: udid)
+                if state == .installed { self.onDeviceInstalled?(udid) }
+
                 if var existing = self.jobs[key] {
                     existing.state = state
                     self.jobs[key] = existing

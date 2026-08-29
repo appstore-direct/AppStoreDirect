@@ -25,9 +25,16 @@ final class DeviceStore {
     private let service = DeviceService()
     private let installer = AppInstaller()
     private var monitorTask: Task<Void, Never>?
-    /// Devices seen by usbmuxd but not describable yet — locked, untrusted, or
-    /// still booting. Surfaced so the user knows to unlock the phone.
-    private(set) var unreachableUDIDs: [String] = []
+    /// Devices usbmuxd reports but that could not be described — locked, untrusted,
+    /// still booting, or a usbmuxd failure under load. The reason is kept and shown
+    /// rather than discarded, so a phone is never silently missing from the fleet.
+    private(set) var unreachable: [UnreachableDevice] = []
+
+    struct UnreachableDevice: Identifiable, Hashable {
+        var id: String { udid }
+        let udid: String
+        let reason: String
+    }
 
     var selectedDevices: [ConnectedDevice] {
         devices.filter { selectedUDIDs.contains($0.udid) }
@@ -107,20 +114,26 @@ final class DeviceStore {
         do {
             let attached = try await service.attachedDevices()
             var described: [ConnectedDevice] = []
-            var unreachable: [String] = []
+            var failures: [UnreachableDevice] = []
 
             // Describing one device at a time: each opens a lockdown session, and
             // hammering usbmuxd with parallel handshakes produces spurious failures.
+            // With twenty phones this takes a moment, which is preferable to a
+            // refresh that reports fewer devices than are actually plugged in.
             for entry in attached {
-                if let device = try? await service.describe(udid: entry.udid, connection: entry.connection) {
-                    described.append(device)
-                } else {
-                    unreachable.append(entry.udid)
+                do {
+                    described.append(
+                        try await service.describe(udid: entry.udid, connection: entry.connection)
+                    )
+                } catch {
+                    failures.append(
+                        UnreachableDevice(udid: entry.udid, reason: error.localizedDescription)
+                    )
                 }
             }
 
             devices = described.sorted { $0.name.localizedCaseInsensitiveCompare($1.name) == .orderedAscending }
-            unreachableUDIDs = unreachable
+            unreachable = failures
             errorMessage = nil
 
             // Drop selections for devices that are gone.
@@ -132,18 +145,59 @@ final class DeviceStore {
             if selectedUDIDs.isEmpty, devices.count == 1 {
                 selectedUDIDs = [devices[0].udid]
             }
+
+            // Drop cached listings for devices that went away, then read the list for
+            // any device we have not seen before — this is what makes the tracked-app
+            // badges correct on connect and reconnect.
+            installedApps = installedApps.filter { present.contains($0.key) }
+            let unread = devices.filter { installedApps[$0.udid] == nil }.map(\.udid)
+            if !unread.isEmpty {
+                Task { [weak self] in
+                    for udid in unread {
+                        await self?.refreshInstalledApps(for: udid)
+                    }
+                }
+            }
         } catch {
             devices = []
-            unreachableUDIDs = []
+            unreachable = []
             errorMessage = error.localizedDescription
+        }
+    }
+
+    /// Reads the installed-app list from every connected device.
+    ///
+    /// Serial on purpose: each device opens its own lockdown and installation_proxy
+    /// session, and twenty simultaneous handshakes is exactly the load that makes
+    /// usbmuxd start refusing connections.
+    func refreshInstalledAppsForAll() async {
+        for device in devices {
+            await refreshInstalledApps(for: device.udid)
         }
     }
 
     private func handleDetach(udid: String) async {
         devices.removeAll { $0.udid == udid }
         selectedUDIDs.remove(udid)
-        unreachableUDIDs.removeAll { $0 == udid }
+        unreachable.removeAll { $0.udid == udid }
         installedApps.removeValue(forKey: udid)
+    }
+
+    // MARK: - Tracked apps
+
+    /// Which tracked apps are actually present on a device.
+    ///
+    /// Answered from that device's real `instproxy_browse` listing, matched by bundle
+    /// identifier. A device whose list has not been read yet reports nothing rather
+    /// than guessing.
+    func trackedAppsInstalled(on udid: String) -> [TrackedApp] {
+        let present = Set(installedApps(for: udid).map(\.bundleIdentifier))
+        return TrackedApp.all.filter { present.contains($0.bundleID) }
+    }
+
+    /// True once this device's installed list has been read at least once.
+    func hasReadInstalledApps(for udid: String) -> Bool {
+        installedApps[udid] != nil
     }
 
     // MARK: - Installed apps
