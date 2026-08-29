@@ -1,0 +1,16 @@
+// Code signing identity for local builds.
+//
+// The default, "-", is ad-hoc signing: it works with no setup, but produces a
+// different signature on every build. macOS ties a Keychain item's access control
+// to the signature of the app that created it, so with ad-hoc signing you are
+// re-prompted to allow Keychain access after every rebuild.
+//
+// Setting a stable identity avoids that. List yours with:
+//
+//     security find-identity -v -p codesigning
+//
+// then paste the 40-character hash below. Using the hash rather than the name
+// avoids Xcode's "Mac Development" certificate-type mapping, which rejects an
+// ordinary "Apple Development" certificate in manual signing mode.
+
+ASD_SIGN_IDENTITY = FFF75F13F9A8637D9B6F95C4F5975277244B08F1

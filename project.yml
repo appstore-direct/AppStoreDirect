@@ -1,0 +1,83 @@
+name: AppStoreDirect
+options:
+  bundleIdPrefix: com.appstoredirect
+  deploymentTarget:
+    macOS: "14.0"
+  createIntermediateGroups: true
+
+packages:
+  AppStoreDirectKit:
+    path: .
+
+settings:
+  base:
+    SWIFT_VERSION: "6.0"
+    MARKETING_VERSION: "0.1.0"
+    CURRENT_PROJECT_VERSION: "1"
+    # libimobiledevice is LGPL and must stay dynamically linked. Homebrew's dylibs
+    # live outside the bundle, so the loader is pointed at them explicitly.
+    LD_RUNPATH_SEARCH_PATHS: ["$(inherited)", "/opt/homebrew/lib"]
+    LIBRARY_SEARCH_PATHS: ["$(inherited)", "/opt/homebrew/lib"]
+    HEADER_SEARCH_PATHS: ["$(inherited)", "/opt/homebrew/include"]
+
+configFiles:
+  Debug: Signing.xcconfig
+  Release: Signing.xcconfig
+
+targets:
+  AppStoreDirect:
+    type: application
+    platform: macOS
+    sources:
+      - path: App
+    dependencies:
+      - package: AppStoreDirectKit
+        product: AppStoreDirectKit
+    info:
+      path: App/Info.plist
+      properties:
+        CFBundleName: AppStoreDirect
+        CFBundleDisplayName: AppStoreDirect
+        CFBundleShortVersionString: "$(MARKETING_VERSION)"
+        CFBundleVersion: "$(CURRENT_PROJECT_VERSION)"
+        LSMinimumSystemVersion: "14.0"
+        NSHumanReadableCopyright: ""
+        # Talking to a USB device through usbmuxd requires this on recent macOS.
+        NSAppleEventsUsageDescription: Not used.
+    entitlements:
+      path: App/AppStoreDirect.entitlements
+      properties:
+        # The App Sandbox is deliberately off: the app must reach usbmuxd's socket
+        # at /var/run/usbmuxd and spawn the bridge helper. See docs/ARCHITECTURE.md.
+        com.apple.security.app-sandbox: false
+        com.apple.security.cs.allow-jit: true
+        com.apple.security.cs.disable-library-validation: true
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.appstoredirect.mac
+        ENABLE_HARDENED_RUNTIME: true
+        # Signing identity comes from Signing.xcconfig, defaulting to ad-hoc.
+        # Ad-hoc produces a different signature on every build, which invalidates the
+        # Keychain ACL on the saved session and makes macOS re-prompt for access after
+        # each rebuild — so a stable identity is worth setting. See Signing.xcconfig.
+        CODE_SIGN_STYLE: Manual
+        CODE_SIGN_IDENTITY: "$(ASD_SIGN_IDENTITY:default=-)"
+        CODE_SIGNING_ALLOWED: true
+        CODE_SIGNING_REQUIRED: false
+    preBuildScripts:
+      - name: Build App Store bridge
+        script: |
+          set -euo pipefail
+          "${SRCROOT}/Scripts/build-bridge.sh"
+        outputFiles:
+          - $(SRCROOT)/.build/appstore-bridge
+        basedOnDependencyAnalysis: false
+    postCompileScripts:
+      - name: Embed App Store bridge
+        script: |
+          set -euo pipefail
+          DEST="${BUILT_PRODUCTS_DIR}/${CONTENTS_FOLDER_PATH}/MacOS"
+          mkdir -p "${DEST}"
+          cp -f "${SRCROOT}/.build/appstore-bridge" "${DEST}/appstore-bridge"
+          chmod 755 "${DEST}/appstore-bridge"
+        basedOnDependencyAnalysis: false

@@ -1,0 +1,37 @@
+# Build output
+.build/
+.swiftpm/
+DerivedData/
+*.o
+*.dSYM/
+
+# Xcode user state
+xcuserdata/
+*.xcuserdatad
+*.xcuserstate
+
+# macOS
+.DS_Store
+
+# Runtime secrets and account material.
+#
+# None of these are produced inside the repository today: the Apple Account session
+# lives in the macOS Keychain, the bridge's cookie jar lives in a 0700 temp directory
+# that is scrubbed when the process exits, and downloaded packages go to
+# ~/Library/Caches/com.appstoredirect.mac/Packages. These patterns exist so that a
+# future change, or a stray manual test, cannot commit credentials by accident.
+*.ipa
+cookies*.json
+session*.json
+account.json
+*.p12
+*.pem
+*.key
+*.mobileprovision
+*.certSigningRequest
+secrets.*
+.env
+.env.*
+
+# Local signing override, if a contributor keeps theirs out of the repo.
+Signing.local.xcconfig

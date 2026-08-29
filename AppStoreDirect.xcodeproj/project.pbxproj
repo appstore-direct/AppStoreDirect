@@ -1,0 +1,469 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		18337B7F93C53709A2A70D0F /* InstallCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6454ADEB08A7EBCE3FEF3355 /* InstallCenter.swift */; };
+		2A83E4719AE6F8F248014537 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA4C74EFB070653C72E784F0 /* RootView.swift */; };
+		32F2C9716AF7DCD3DAE224A2 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872C070AA71E2153572DA18C /* SignInView.swift */; };
+		38F94C45014903E52C4DA1F4 /* DevicesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADCEDFED0A2D1B083EDD137D /* DevicesView.swift */; };
+		471543421062E84D86419FFE /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389E0B26388E4F804E77101D /* SettingsView.swift */; };
+		4B3B4106D3BB1EC77A438A1A /* AppStoreDirectApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BBA6EFC6F01F50859C6907 /* AppStoreDirectApp.swift */; };
+		5C16F3A6B8BB2FD068A2C3F1 /* OwnershipStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4CAE7A27A89FB9681FDB3E /* OwnershipStore.swift */; };
+		6AF83E80A2A1E10F990DDE4F /* DeviceStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8318FDA526D47777637077 /* DeviceStore.swift */; };
+		B0E4BA34CC417CA6AA007CDB /* AppStoreDirectKit in Frameworks */ = {isa = PBXBuildFile; productRef = 340FC868A222F8294C08A449 /* AppStoreDirectKit */; };
+		DF5A1D7D6771578E1AE69625 /* InstalledView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2513ED3E45D9491EC979B906 /* InstalledView.swift */; };
+		E08C9DA765FEFE341604CE22 /* AppsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80E00BB96502AC795814119 /* AppsView.swift */; };
+		F67CE7D6105544B7CCC698B0 /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 548F01EF08A2BABB8B043135 /* AppModel.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		21BBA6EFC6F01F50859C6907 /* AppStoreDirectApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStoreDirectApp.swift; sourceTree = "<group>"; };
+		2513ED3E45D9491EC979B906 /* InstalledView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstalledView.swift; sourceTree = "<group>"; };
+		33B79413AF8620FF9944DD78 /* AppStoreDirect */ = {isa = PBXFileReference; lastKnownFileType = folder; name = AppStoreDirect; path = .; sourceTree = SOURCE_ROOT; };
+		389E0B26388E4F804E77101D /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		43782D9389E3F2BAFAF9DA9E /* AppStoreDirect.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AppStoreDirect.entitlements; sourceTree = "<group>"; };
+		548F01EF08A2BABB8B043135 /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
+		6454ADEB08A7EBCE3FEF3355 /* InstallCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstallCenter.swift; sourceTree = "<group>"; };
+		872C070AA71E2153572DA18C /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
+		A80E00BB96502AC795814119 /* AppsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsView.swift; sourceTree = "<group>"; };
+		A9BDDCBCEB24AB891311E694 /* AppStoreDirect.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppStoreDirect.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		ADCEDFED0A2D1B083EDD137D /* DevicesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevicesView.swift; sourceTree = "<group>"; };
+		AE7C18CB4DD76BF50F178E03 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		BE4CAE7A27A89FB9681FDB3E /* OwnershipStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnershipStore.swift; sourceTree = "<group>"; };
+		EA4C74EFB070653C72E784F0 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		FE8318FDA526D47777637077 /* DeviceStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceStore.swift; sourceTree = "<group>"; };
+		"TEMP_8FCEAE8E-0058-4965-8E55-B19FD5D32B08" /* Signing.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Signing.xcconfig; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1793ACA3B926CD4366025EE8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B0E4BA34CC417CA6AA007CDB /* AppStoreDirectKit in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0E7D4014F18D7921C3FA06C7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A80E00BB96502AC795814119 /* AppsView.swift */,
+				ADCEDFED0A2D1B083EDD137D /* DevicesView.swift */,
+				2513ED3E45D9491EC979B906 /* InstalledView.swift */,
+				EA4C74EFB070653C72E784F0 /* RootView.swift */,
+				389E0B26388E4F804E77101D /* SettingsView.swift */,
+				872C070AA71E2153572DA18C /* SignInView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		16E35E5D9C862E99DDC4E306 = {
+			isa = PBXGroup;
+			children = (
+				83AEEF269E0B6DB2DFF5B4F9 /* App */,
+				A98A5CAF1CA440C26611B2D1 /* Packages */,
+				D4AD15F1C64C75D24B326814 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		83AEEF269E0B6DB2DFF5B4F9 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				548F01EF08A2BABB8B043135 /* AppModel.swift */,
+				43782D9389E3F2BAFAF9DA9E /* AppStoreDirect.entitlements */,
+				21BBA6EFC6F01F50859C6907 /* AppStoreDirectApp.swift */,
+				FE8318FDA526D47777637077 /* DeviceStore.swift */,
+				AE7C18CB4DD76BF50F178E03 /* Info.plist */,
+				6454ADEB08A7EBCE3FEF3355 /* InstallCenter.swift */,
+				BE4CAE7A27A89FB9681FDB3E /* OwnershipStore.swift */,
+				0E7D4014F18D7921C3FA06C7 /* Views */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		A98A5CAF1CA440C26611B2D1 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				33B79413AF8620FF9944DD78 /* AppStoreDirect */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
+		D4AD15F1C64C75D24B326814 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A9BDDCBCEB24AB891311E694 /* AppStoreDirect.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		"TEMP_B6A4C69B-20F9-4249-9DB1-6B554E73B6E6" /* AppStoreDirect */ = {
+			isa = PBXGroup;
+			children = (
+				"TEMP_8FCEAE8E-0058-4965-8E55-B19FD5D32B08" /* Signing.xcconfig */,
+			);
+			path = AppStoreDirect;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		168DBF4AC65B237C8152FDCA /* AppStoreDirect */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 62157F374197796EF060DB27 /* Build configuration list for PBXNativeTarget "AppStoreDirect" */;
+			buildPhases = (
+				D37A4CA782AA3DE011B9DF64 /* Build App Store bridge */,
+				108D5C86C9684A9F58E4B450 /* Sources */,
+				0164F0DA9DC5C2C2D0EF8F35 /* Embed App Store bridge */,
+				1793ACA3B926CD4366025EE8 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AppStoreDirect;
+			packageProductDependencies = (
+				340FC868A222F8294C08A449 /* AppStoreDirectKit */,
+			);
+			productName = AppStoreDirect;
+			productReference = A9BDDCBCEB24AB891311E694 /* AppStoreDirect.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9A62F6A7C64FD970FBCF7D08 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					168DBF4AC65B237C8152FDCA = {
+						ProvisioningStyle = Manual;
+					};
+				};
+			};
+			buildConfigurationList = B7475E4D9C08338C07EE25EF /* Build configuration list for PBXProject "AppStoreDirect" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 16E35E5D9C862E99DDC4E306;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				55CE4D6326A62F7BA9E10314 /* XCLocalSwiftPackageReference "." */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = D4AD15F1C64C75D24B326814 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				168DBF4AC65B237C8152FDCA /* AppStoreDirect */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0164F0DA9DC5C2C2D0EF8F35 /* Embed App Store bridge */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Embed App Store bridge";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -euo pipefail\nDEST=\"${BUILT_PRODUCTS_DIR}/${CONTENTS_FOLDER_PATH}/MacOS\"\nmkdir -p \"${DEST}\"\ncp -f \"${SRCROOT}/.build/appstore-bridge\" \"${DEST}/appstore-bridge\"\nchmod 755 \"${DEST}/appstore-bridge\"\n";
+		};
+		D37A4CA782AA3DE011B9DF64 /* Build App Store bridge */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Build App Store bridge";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(SRCROOT)/.build/appstore-bridge",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -euo pipefail\n\"${SRCROOT}/Scripts/build-bridge.sh\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		108D5C86C9684A9F58E4B450 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F67CE7D6105544B7CCC698B0 /* AppModel.swift in Sources */,
+				4B3B4106D3BB1EC77A438A1A /* AppStoreDirectApp.swift in Sources */,
+				E08C9DA765FEFE341604CE22 /* AppsView.swift in Sources */,
+				6AF83E80A2A1E10F990DDE4F /* DeviceStore.swift in Sources */,
+				38F94C45014903E52C4DA1F4 /* DevicesView.swift in Sources */,
+				18337B7F93C53709A2A70D0F /* InstallCenter.swift in Sources */,
+				DF5A1D7D6771578E1AE69625 /* InstalledView.swift in Sources */,
+				5C16F3A6B8BB2FD068A2C3F1 /* OwnershipStore.swift in Sources */,
+				2A83E4719AE6F8F248014537 /* RootView.swift in Sources */,
+				471543421062E84D86419FFE /* SettingsView.swift in Sources */,
+				32F2C9716AF7DCD3DAE224A2 /* SignInView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		125671673183EE4D2712C940 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = "TEMP_8FCEAE8E-0058-4965-8E55-B19FD5D32B08" /* Signing.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/opt/homebrew/include,
+				);
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					/opt/homebrew/lib,
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/opt/homebrew/lib,
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 0.1.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 6.0;
+			};
+			name = Release;
+		};
+		151B2C96814BC1A035EF7335 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGNING_ALLOWED = YES;
+				CODE_SIGNING_REQUIRED = NO;
+				CODE_SIGN_ENTITLEMENTS = App/AppStoreDirect.entitlements;
+				CODE_SIGN_IDENTITY = "$(ASD_SIGN_IDENTITY:default=-)";
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = App/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.appstoredirect.mac;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		28D79A39715F48D9446DB26A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGNING_ALLOWED = YES;
+				CODE_SIGNING_REQUIRED = NO;
+				CODE_SIGN_ENTITLEMENTS = App/AppStoreDirect.entitlements;
+				CODE_SIGN_IDENTITY = "$(ASD_SIGN_IDENTITY:default=-)";
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = App/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.appstoredirect.mac;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		CBBEB59E47AEBB29F9328ADB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = "TEMP_8FCEAE8E-0058-4965-8E55-B19FD5D32B08" /* Signing.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/opt/homebrew/include,
+				);
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					/opt/homebrew/lib,
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/opt/homebrew/lib,
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 0.1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 6.0;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		62157F374197796EF060DB27 /* Build configuration list for PBXNativeTarget "AppStoreDirect" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				151B2C96814BC1A035EF7335 /* Debug */,
+				28D79A39715F48D9446DB26A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		B7475E4D9C08338C07EE25EF /* Build configuration list for PBXProject "AppStoreDirect" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CBBEB59E47AEBB29F9328ADB /* Debug */,
+				125671673183EE4D2712C940 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		55CE4D6326A62F7BA9E10314 /* XCLocalSwiftPackageReference "." */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = .;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		340FC868A222F8294C08A449 /* AppStoreDirectKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = AppStoreDirectKit;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 9A62F6A7C64FD970FBCF7D08 /* Project object */;
+}
