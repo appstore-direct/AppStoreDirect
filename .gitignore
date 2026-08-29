@@ -35,3 +35,6 @@ secrets.*
 
 # Local signing override, if a contributor keeps theirs out of the repo.
 Signing.local.xcconfig
+
+# Packaging output from Scripts/package.sh
+build/

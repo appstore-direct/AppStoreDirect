@@ -16,7 +16,11 @@ settings:
     CURRENT_PROJECT_VERSION: "1"
     # libimobiledevice is LGPL and must stay dynamically linked. Homebrew's dylibs
     # live outside the bundle, so the loader is pointed at them explicitly.
-    LD_RUNPATH_SEARCH_PATHS: ["$(inherited)", "/opt/homebrew/lib"]
+    LD_RUNPATH_SEARCH_PATHS:
+      - "$(inherited)"
+      - "@executable_path/../Frameworks"
+      - "@loader_path/../Frameworks"
+      - "/opt/homebrew/lib"
     LIBRARY_SEARCH_PATHS: ["$(inherited)", "/opt/homebrew/lib"]
     HEADER_SEARCH_PATHS: ["$(inherited)", "/opt/homebrew/include"]
 
@@ -38,6 +42,7 @@ targets:
       properties:
         CFBundleName: AppStoreDirect
         CFBundleDisplayName: AppStoreDirect
+        CFBundleIconFile: AppIcon
         CFBundleShortVersionString: "$(MARKETING_VERSION)"
         CFBundleVersion: "$(CURRENT_PROJECT_VERSION)"
         LSMinimumSystemVersion: "14.0"

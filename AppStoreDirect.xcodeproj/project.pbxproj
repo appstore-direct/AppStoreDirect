@@ -16,10 +16,12 @@
 		5C16F3A6B8BB2FD068A2C3F1 /* OwnershipStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4CAE7A27A89FB9681FDB3E /* OwnershipStore.swift */; };
 		62B963D17670E1931DDEDB88 /* TrackedApps.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1230764C5090320463A732 /* TrackedApps.swift */; };
 		6AF83E80A2A1E10F990DDE4F /* DeviceStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8318FDA526D47777637077 /* DeviceStore.swift */; };
+		A21FCEFA4BA1B48CB9D26EC6 /* AppIcon-source-1024.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EE07268B6C4FA871F120C63 /* AppIcon-source-1024.png */; };
 		B0E4BA34CC417CA6AA007CDB /* AppStoreDirectKit in Frameworks */ = {isa = PBXBuildFile; productRef = 340FC868A222F8294C08A449 /* AppStoreDirectKit */; };
 		DF5A1D7D6771578E1AE69625 /* InstalledView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2513ED3E45D9491EC979B906 /* InstalledView.swift */; };
 		E08C9DA765FEFE341604CE22 /* AppsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80E00BB96502AC795814119 /* AppsView.swift */; };
 		F67CE7D6105544B7CCC698B0 /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 548F01EF08A2BABB8B043135 /* AppModel.swift */; };
+		FA7BC0FF2AF05A82D18BAED3 /* AppIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 7287DC9FDACF1B92CAAC8252 /* AppIcon.icns */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,7 +31,9 @@
 		389E0B26388E4F804E77101D /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		43782D9389E3F2BAFAF9DA9E /* AppStoreDirect.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AppStoreDirect.entitlements; sourceTree = "<group>"; };
 		548F01EF08A2BABB8B043135 /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
+		5EE07268B6C4FA871F120C63 /* AppIcon-source-1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon-source-1024.png"; sourceTree = "<group>"; };
 		6454ADEB08A7EBCE3FEF3355 /* InstallCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstallCenter.swift; sourceTree = "<group>"; };
+		7287DC9FDACF1B92CAAC8252 /* AppIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = AppIcon.icns; sourceTree = "<group>"; };
 		872C070AA71E2153572DA18C /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		A80E00BB96502AC795814119 /* AppsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsView.swift; sourceTree = "<group>"; };
 		A9BDDCBCEB24AB891311E694 /* AppStoreDirect.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppStoreDirect.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -39,7 +43,7 @@
 		BE4CAE7A27A89FB9681FDB3E /* OwnershipStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnershipStore.swift; sourceTree = "<group>"; };
 		EA4C74EFB070653C72E784F0 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		FE8318FDA526D47777637077 /* DeviceStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceStore.swift; sourceTree = "<group>"; };
-		"TEMP_44015C9F-49C6-46CC-AB7F-65C2DA6036C2" /* Signing.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Signing.xcconfig; sourceTree = "<group>"; };
+		"TEMP_E2E48884-078D-4DF5-A869-79A65D4CF2B8" /* Signing.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Signing.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +80,15 @@
 			);
 			sourceTree = "<group>";
 		};
+		338BAC7799DDD7955C1D902E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				5EE07268B6C4FA871F120C63 /* AppIcon-source-1024.png */,
+				7287DC9FDACF1B92CAAC8252 /* AppIcon.icns */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		83AEEF269E0B6DB2DFF5B4F9 /* App */ = {
 			isa = PBXGroup;
 			children = (
@@ -87,6 +100,7 @@
 				6454ADEB08A7EBCE3FEF3355 /* InstallCenter.swift */,
 				BE4CAE7A27A89FB9681FDB3E /* OwnershipStore.swift */,
 				AA1230764C5090320463A732 /* TrackedApps.swift */,
+				338BAC7799DDD7955C1D902E /* Resources */,
 				0E7D4014F18D7921C3FA06C7 /* Views */,
 			);
 			path = App;
@@ -108,10 +122,10 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		"TEMP_78F8CBDF-C90F-477B-BCFC-C0960C4D74B4" /* AppStoreDirect */ = {
+		"TEMP_336AA48C-1FBD-477E-B89F-AA15C88187DB" /* AppStoreDirect */ = {
 			isa = PBXGroup;
 			children = (
-				"TEMP_44015C9F-49C6-46CC-AB7F-65C2DA6036C2" /* Signing.xcconfig */,
+				"TEMP_E2E48884-078D-4DF5-A869-79A65D4CF2B8" /* Signing.xcconfig */,
 			);
 			path = AppStoreDirect;
 			sourceTree = "<group>";
@@ -126,6 +140,7 @@
 				D37A4CA782AA3DE011B9DF64 /* Build App Store bridge */,
 				108D5C86C9684A9F58E4B450 /* Sources */,
 				0164F0DA9DC5C2C2D0EF8F35 /* Embed App Store bridge */,
+				3ADD00519FB0273267B81BF5 /* Resources */,
 				1793ACA3B926CD4366025EE8 /* Frameworks */,
 			);
 			buildRules = (
@@ -175,6 +190,18 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3ADD00519FB0273267B81BF5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A21FCEFA4BA1B48CB9D26EC6 /* AppIcon-source-1024.png in Resources */,
+				FA7BC0FF2AF05A82D18BAED3 /* AppIcon.icns in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
 		0164F0DA9DC5C2C2D0EF8F35 /* Embed App Store bridge */ = {
@@ -243,7 +270,7 @@
 /* Begin XCBuildConfiguration section */
 		125671673183EE4D2712C940 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = "TEMP_44015C9F-49C6-46CC-AB7F-65C2DA6036C2" /* Signing.xcconfig */;
+			baseConfigurationReference = "TEMP_E2E48884-078D-4DF5-A869-79A65D4CF2B8" /* Signing.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -294,6 +321,8 @@
 				);
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
 					/opt/homebrew/lib,
 				);
 				LIBRARY_SEARCH_PATHS = (
@@ -356,7 +385,7 @@
 		};
 		CBBEB59E47AEBB29F9328ADB /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = "TEMP_44015C9F-49C6-46CC-AB7F-65C2DA6036C2" /* Signing.xcconfig */;
+			baseConfigurationReference = "TEMP_E2E48884-078D-4DF5-A869-79A65D4CF2B8" /* Signing.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -413,6 +442,8 @@
 				);
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
 					/opt/homebrew/lib,
 				);
 				LIBRARY_SEARCH_PATHS = (
