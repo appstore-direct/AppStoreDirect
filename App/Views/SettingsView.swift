@@ -9,14 +9,23 @@ struct SettingsView: View {
         Form {
             Section {
                 if let account = model.account {
-                    LabeledContent("Signed in as", value: account.email)
+                    LabeledContent("Signed in as") {
+                        HStack(spacing: 6) {
+                            Image(systemName: "checkmark.seal.fill")
+                                .foregroundStyle(.green)
+                                .font(.caption)
+                            Text(account.email)
+                        }
+                    }
                     if !account.name.isEmpty {
                         LabeledContent("Name", value: account.name)
                     }
                     LabeledContent("Storefront", value: account.countryCode ?? account.storefront)
                     Button("Sign Out", role: .destructive) { isConfirmingSignOut = true }
                 } else {
-                    LabeledContent("Status", value: "Not signed in")
+                    LabeledContent("Status") {
+                        Text("Not signed in").foregroundStyle(.secondary)
+                    }
                     Button("Sign In…") { model.isPresentingSignIn = true }
                 }
             } header: {
@@ -41,6 +50,7 @@ struct SettingsView: View {
                         Text("\(model.installs.concurrencyLimit)")
                             .monospacedDigit()
                             .foregroundStyle(.secondary)
+                            .contentTransition(.numericText())
                     }
                 }
             } header: {
@@ -59,7 +69,10 @@ struct SettingsView: View {
             }
 
             Section {
-                LabeledContent("App packages", value: "Downloaded once per app, then installed to every selected device")
+                LabeledContent(
+                    "App packages",
+                    value: "Downloaded once per app, then installed to every selected device"
+                )
                 Button("Clear Cached Packages") {
                     Task.detached { InstallCoordinator.sweepCache() }
                 }

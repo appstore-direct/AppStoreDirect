@@ -1,7 +1,7 @@
 import AppStoreDirectKit
 import SwiftUI
 
-/// Apps already on the devices, one section per selected device.
+/// Apps already on the devices, grouped by phone.
 struct InstalledView: View {
     @Environment(AppModel.self) private var model
 
@@ -13,55 +13,22 @@ struct InstalledView: View {
     var body: some View {
         Group {
             if devices.devices.isEmpty {
-                ContentUnavailableView(
-                    "No iPhone connected",
-                    systemImage: "cable.connector.slash",
-                    description: Text("Connect an iPhone by USB to see the apps on it.")
+                EmptyStateView(
+                    symbol: "cable.connector.slash",
+                    title: "No iPhones Connected",
+                    message: "Connect an iPhone by USB to see the apps on it."
                 )
             } else {
-                List {
-                    ForEach(shown) { device in
-                        Section {
-                            let apps = devices.installedApps(for: device.udid)
-                            if devices.isLoadingInstalled(for: device.udid) && apps.isEmpty {
-                                HStack(spacing: 8) {
-                                    ProgressView().controlSize(.small)
-                                    Text("Reading…").font(.caption).foregroundStyle(.secondary)
-                                }
-                            } else if apps.isEmpty {
-                                Text("No user apps installed.")
-                                    .font(.caption)
-                                    .foregroundStyle(.secondary)
-                            } else {
-                                ForEach(apps) { app in
-                                    HStack(spacing: 12) {
-                                        VStack(alignment: .leading, spacing: 2) {
-                                            Text(app.name).font(.callout.weight(.medium))
-                                            Text(app.bundleIdentifier)
-                                                .font(.caption2)
-                                                .foregroundStyle(.tertiary)
-                                        }
-                                        Spacer()
-                                        Text(app.shortVersion)
-                                            .font(.caption)
-                                            .monospacedDigit()
-                                            .foregroundStyle(.secondary)
-                                    }
-                                    .padding(.vertical, 2)
-                                }
-                            }
-                        } header: {
-                            HStack {
-                                Text("\(device.name) · iOS \(device.iosVersion)")
-                                Spacer()
-                                Text("\(devices.installedApps(for: device.udid).count)")
-                                    .monospacedDigit()
-                                    .foregroundStyle(.secondary)
-                            }
+                ScrollView {
+                    LazyVStack(alignment: .leading, spacing: 16) {
+                        ForEach(shown) { device in
+                            deviceSection(device)
                         }
                     }
+                    .padding(.horizontal, 14)
+                    .padding(.vertical, 12)
                 }
-                .listStyle(.inset)
+                .scrollContentBackground(.hidden)
             }
         }
         .navigationTitle("Installed")
@@ -83,6 +50,70 @@ struct InstalledView: View {
             for device in shown {
                 await devices.refreshInstalledApps(for: device.udid)
             }
+        }
+    }
+
+    @ViewBuilder
+    private func deviceSection(_ device: ConnectedDevice) -> some View {
+        let apps = devices.installedApps(for: device.udid)
+
+        VStack(alignment: .leading, spacing: 6) {
+            HStack(spacing: 6) {
+                Image(systemName: "iphone.gen3").foregroundStyle(.secondary)
+                Text(device.name).font(.headline)
+                Text("iOS \(device.iosVersion)")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                Spacer()
+                Text("\(apps.count)")
+                    .font(.caption.weight(.medium))
+                    .foregroundStyle(.secondary)
+                    .monospacedDigit()
+            }
+
+            VStack(spacing: 0) {
+                if devices.isLoadingInstalled(for: device.udid) && apps.isEmpty {
+                    HStack(spacing: 7) {
+                        ProgressView().controlSize(.small)
+                        Text("Reading apps…").font(.caption).foregroundStyle(.secondary)
+                        Spacer()
+                    }
+                    .padding(Metric.cardPadding)
+                } else if apps.isEmpty {
+                    HStack {
+                        Text("No user apps installed.")
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                        Spacer()
+                    }
+                    .padding(Metric.cardPadding)
+                } else {
+                    ForEach(Array(apps.enumerated()), id: \.element.id) { index, app in
+                        HStack(spacing: 10) {
+                            VStack(alignment: .leading, spacing: 1) {
+                                Text(app.name).font(.callout.weight(.medium))
+                                Text(app.bundleIdentifier)
+                                    .font(.caption2)
+                                    .foregroundStyle(.tertiary)
+                                    .lineLimit(1)
+                                    .truncationMode(.middle)
+                            }
+                            Spacer(minLength: 8)
+                            Text(app.shortVersion)
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
+                                .monospacedDigit()
+                        }
+                        .padding(.horizontal, Metric.cardPadding)
+                        .padding(.vertical, 7)
+
+                        if index < apps.count - 1 {
+                            Divider().padding(.leading, Metric.cardPadding)
+                        }
+                    }
+                }
+            }
+            .cardSurface()
         }
     }
 }

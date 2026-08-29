@@ -7,25 +7,34 @@ struct RootView: View {
 
     var body: some View {
         NavigationSplitView {
-            List(SidebarSection.allCases, selection: $selection) { section in
-                Label(section.rawValue, systemImage: section.symbol)
-                    .badge(badge(for: section))
-                    .tag(section)
+            List(selection: $selection) {
+                ForEach(SidebarSection.allCases) { section in
+                    Label(section.rawValue, systemImage: section.symbol)
+                        .badge(badge(for: section))
+                        .tag(section)
+                }
             }
-            .navigationSplitViewColumnWidth(min: 190, ideal: 210, max: 260)
-            .safeAreaInset(edge: .bottom) { DeviceStatusBar() }
+            // The sidebar list style is what gives the vibrant background and the
+            // modern selection capsule; both come from the system rather than
+            // being drawn by hand.
+            .listStyle(.sidebar)
+            .navigationSplitViewColumnWidth(min: 196, ideal: 214, max: 260)
+            .safeAreaInset(edge: .bottom, spacing: 0) { DeviceSummaryBar() }
         } detail: {
-            switch selection {
-            case .apps:      AppsView()
-            case .installed: InstalledView()
-            case .devices:   DevicesView()
-            case .settings:  SettingsView()
+            Group {
+                switch selection {
+                case .apps:      AppsView()
+                case .installed: InstalledView()
+                case .devices:   DevicesView()
+                case .settings:  SettingsView()
+                }
             }
+            .navigationSplitViewColumnWidth(min: 560, ideal: 760)
         }
         .sheet(isPresented: signInBinding) { SignInView() }
     }
 
-    /// Device count on the Devices row; active installs on Apps.
+    /// Device count on Devices; work in flight on Apps.
     private func badge(for section: SidebarSection) -> Int {
         switch section {
         case .devices: return model.devices.devices.count
@@ -48,52 +57,53 @@ struct RootView: View {
     }
 }
 
-/// Persistent footer summarising what is plugged in and how much is selected.
-/// The app is useless without a device, so this stays visible on every page.
-struct DeviceStatusBar: View {
+/// Persistent footer summarising the fleet. The app does nothing useful without a
+/// device, so this stays visible on every page rather than living only on Devices.
+struct DeviceSummaryBar: View {
     @Environment(AppModel.self) private var model
-
     private var devices: DeviceStore { model.devices }
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 6) {
+        VStack(spacing: 0) {
             Divider()
+            HStack(spacing: 9) {
+                Image(systemName: devices.devices.isEmpty ? "cable.connector.slash" : "iphone.gen3")
+                    .font(.callout)
+                    .foregroundStyle(devices.devices.isEmpty ? AnyShapeStyle(.secondary) : AnyShapeStyle(Color.green))
+                    .frame(width: 16)
 
-            if devices.devices.isEmpty {
-                HStack(spacing: 8) {
-                    Image(systemName: "cable.connector.slash").foregroundStyle(.secondary)
-                    Text("No iPhone connected")
-                        .font(.callout)
-                        .foregroundStyle(.secondary)
-                    Spacer()
-                }
-            } else {
-                HStack(spacing: 8) {
-                    Image(systemName: "iphone.gen3").foregroundStyle(.green)
-                    VStack(alignment: .leading, spacing: 1) {
-                        Text(deviceHeadline)
-                            .font(.callout)
-                            .lineLimit(1)
+                VStack(alignment: .leading, spacing: 1) {
+                    Text(headline)
+                        .font(.caption.weight(.medium))
+                        .lineLimit(1)
+                    if !devices.devices.isEmpty {
                         Text("\(devices.selectedUDIDs.count) selected")
-                            .font(.caption)
+                            .font(.caption2)
                             .foregroundStyle(.secondary)
                             .monospacedDigit()
+                            .contentTransition(.numericText())
                     }
-                    Spacer()
+                }
+
+                Spacer(minLength: 0)
+
+                if !devices.devices.isEmpty {
                     Button(devices.isAllSelected ? "None" : "All") {
-                        devices.toggleSelectAll()
+                        withAnimation(.snappy(duration: 0.2)) { devices.toggleSelectAll() }
                     }
                     .buttonStyle(.link)
                     .font(.caption)
                 }
             }
+            .padding(.horizontal, 12)
+            .padding(.vertical, 9)
         }
-        .padding(.horizontal, 12)
-        .padding(.bottom, 10)
+        .background(.bar)
     }
 
-    private var deviceHeadline: String {
+    private var headline: String {
         let count = devices.devices.count
+        if count == 0 { return "No iPhone connected" }
         if count == 1, let only = devices.devices.first {
             return "\(only.name) · iOS \(only.iosVersion)"
         }
